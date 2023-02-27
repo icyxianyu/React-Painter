@@ -2,7 +2,7 @@ import ReactPinter from "./ReactPainter";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{height:"100vh"}}>
       <ReactPinter/>
     </div>
   );
