@@ -1,10 +1,18 @@
+import { useState } from "react";
+import History from "../History"
 import "./index.css"
 interface props{
   changeInput:any
   clear:any
-  save:any
+  save:any,
+  replay:any,
+  history:any
 }
-export default function TopToolBar({changeInput,clear,save}:props) {
+export default function TopToolBar({changeInput,clear,save,replay,history}:props) {
+  const [isHistory,setIsHistory] = useState<any>();
+  const historyList = () =>{
+      setIsHistory(!isHistory)
+  }
   return (
     <div className="top">
     <div className="main">
@@ -26,9 +34,16 @@ export default function TopToolBar({changeInput,clear,save}:props) {
                      onChange={(e)=>changeInput("paintfont",e.target.value)}/></label></span>
             <button type="button" className="clear" onClick={clear}>清空画板</button>
             <button type="button" className="clear" onClick={save}>保存图像</button>
-            <button type="button" className="clear" >重现绘图</button>
+            <button type="button" className="clear" onClick={replay}>重现绘图</button>
+            <button type="button" className="clear" onClick={historyList}>历史记录</button>
         </div>
      </div>
+     {isHistory?
+       <div>
+          <History  history={history}/>
+       </div>
+       :<></>
+     }
     </div>
   )
 }
