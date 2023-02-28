@@ -1,0 +1,21 @@
+.historyBox{
+    position: absolute;
+    right:1px;
+    height:300px;
+    width:200px;
+    background-color: rgb(226, 223, 223);
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: auto;
+    z-index: 1;
+    .single{
+        cursor: pointer;
+        transition: all 0.5s;
+        padding-left:10px;
+        border-bottom:1px solid rgb(41, 41, 41);
+        user-select:none;
+    }
+    .single:hover{
+        background-color: #ccc;
+    }
+}

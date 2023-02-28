@@ -1,0 +1,46 @@
+.top{
+    height:50px;
+    background-color:#2e3552;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid black;
+    .main{
+        display: flex;
+        justify-content: space-between;
+        margin-left:30px; 
+        .left{
+            line-height:50px;
+        }    
+        h2{
+            margin:0;
+        }
+        .imputtotal{
+            color:rgb(255, 255, 255);
+            font-weight: 800;
+            line-height:50px;
+            margin-right:20px;
+            .word{
+                margin-left:10px;
+                display: inline-block;
+                border-radius: 10px;
+                height:20px;
+                width:60px;
+                }
+                .pintfont{
+                    margin-left:10px;
+                    display: inline-block;
+                    border-radius: 5px;
+                    width:100px;
+                    }
+                .clear{
+                    margin-left:10px;
+                    display: inline-block;
+                    color:#ccc;
+                    border-radius: 4px;
+                    background: #2e3552;
+                    box-shadow:  3px 3px 6px #272d46,-3px -3px 6px #353d5e;
+                    }
+                }
+            }
+        }
+
+
