@@ -1,14 +1,16 @@
+import { DrawImg } from "@/ReactPainter/utils";
 import { useState } from "react";
 import History from "../History"
-import "./index.css"
+import "./index.scss"
 interface props{
   changeInput:any
   clear:any
   save:any,
-  replay:any,
+  replay:any
   history:any
+  changeHistory:any
 }
-export default function TopToolBar({changeInput,clear,save,replay,history}:props) {
+export default function TopToolBar({changeInput,clear,save,replay,history,changeHistory}:props) {
   const [isHistory,setIsHistory] = useState<any>();
   const historyList = () =>{
       setIsHistory(!isHistory)
@@ -39,9 +41,12 @@ export default function TopToolBar({changeInput,clear,save,replay,history}:props
         </div>
      </div>
      {isHistory?
-       <div>
-          <History  history={history}/>
-       </div>
+        <div >
+            <History  
+              history={history}
+              changeHistory={changeHistory}
+              />
+        </div>
        :<></>
      }
     </div>

@@ -3,7 +3,7 @@ import Draw from './components/Draw/draw'
 import LeftToolBar from './components/LeftToolBar';
 import RightToolBar from './components/RightToolBar';
 import TopToolBar from './components/TopToolBar/TopToolBar'
-import { keyPressAction } from './utils';
+import { DrawImg, keyPressAction } from './utils';
 export default function ReactPinter() {
     const [history,setHistory] =useState<any>([null]);
     const [canvas,setCanvas] = useState<HTMLElement|any>();
@@ -70,6 +70,9 @@ export default function ReactPinter() {
         event.stopPropagation();
         setEvent(event)
     }
+    const changeHistory = (index:number) =>{
+        DrawImg({ctx,canvas,history},setHistory,index)
+    }
     const replay = () =>{
 
     }
@@ -95,7 +98,8 @@ export default function ReactPinter() {
             save={save}
             changeInput={changeInput}
             replay={replay}
-            history={history}/>
+            history={history} 
+            changeHistory={changeHistory}/>
         <div style={{display:"flex",flex:1}}>
             <LeftToolBar></LeftToolBar>
             <Draw 
