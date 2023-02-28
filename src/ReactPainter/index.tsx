@@ -5,13 +5,15 @@ import RightToolBar from './components/RightToolBar';
 import TopToolBar from './components/TopToolBar/TopToolBar'
 import { keyPressAction } from './utils';
 export default function ReactPinter() {
-    const [history,setHistory] =useState<any>([null,]);
+    const [history,setHistory] =useState<any>([null]);
     const [canvas,setCanvas] = useState<HTMLElement|any>();
     const [ctx,setCtx] = useState<any>();
     const [isClick,setIsClick] = useState<boolean>(false);
     const [Event,setEvent] = useState<any>(); 
     const addToHistory = ()=>{
-        setHistory([...history,canvas.toDataURL()].slice(-50))
+        setHistory([...history,{src:canvas.toDataURL(),
+                    action:"painDraw"}]
+        .slice(-50))
     }
     const onMousedown = (event:any) => {
         if (event.button === 0) {
@@ -58,7 +60,6 @@ export default function ReactPinter() {
         const el = document.createElement('a');
         // 设置 href 为图片经过 base64 编码后的字符串，默认为 png 格式
         el.href = canvas.toDataURL();
-        console.log(canvas.toDataURL())
         el.download = '图片';
         // 创建一个点击事件并对 a 标签进行触发
         const event = new MouseEvent('click');
@@ -68,6 +69,9 @@ export default function ReactPinter() {
         event.preventDefault();
         event.stopPropagation();
         setEvent(event)
+    }
+    const replay = () =>{
+
     }
     useEffect(()=>{
         if(Event){
@@ -89,7 +93,9 @@ export default function ReactPinter() {
         <TopToolBar 
             clear={clear}
             save={save}
-            changeInput={changeInput}/>
+            changeInput={changeInput}
+            replay={replay}
+            history={history}/>
         <div style={{display:"flex",flex:1}}>
             <LeftToolBar></LeftToolBar>
             <Draw 

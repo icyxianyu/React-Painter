@@ -4,11 +4,11 @@ export const keyPressAction=(event:any,canvas:any,ctx:any,history:any,setHistory
             const len = history.length;
             if(len === 2){
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                setHistory(null);
+                setHistory([null]);
                 return;
             }
             let img = new Image();
-			img.src = history[len-2];
+			img.src = history[len-2]?.src;
             img.onload = ()=>{
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img,0,0);
