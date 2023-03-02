@@ -1,19 +1,19 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useEffect } from 'react';
 import "./index.css"
 interface props{
-    setCanvas:Function
-    setCtx:any
+    // setCanvas:Function
+    index:any
     onMousedown:any
     onMouseMove:any
     onMouseUp:any
 }
  const Draw =(
-    {setCanvas,setCtx,onMousedown,onMouseMove,onMouseUp}:props)=>{
-    const canvasRef = useRef<any>();   
+    {onMousedown,onMouseMove,onMouseUp,index}:props)=>{
+    const canvasRef = useRef<any>(); 
+    const [ctx,setCtx ] = useState<any>(null); 
     useEffect(()=>{
         if(canvasRef.current){
-            setCanvas(canvasRef.current);
             setCtx(canvasRef.current.getContext("2d"))
         }
     },[canvasRef.current])
@@ -23,10 +23,12 @@ interface props{
                 className='canvasBox-canvas'
                 width={1000}
                 height={500}
-                style={{width:"1000px",height:"500px"}}
-                onMouseDown={onMousedown}
-                onMouseMove={onMouseMove}
-                onMouseUp={onMouseUp}
+                style={{width:"1000px",
+                        height:"500px",
+                        }}
+                onMouseDown={(event)=>onMousedown(event,canvasRef.current,ctx)}
+                onMouseMove={(event)=>onMouseMove(event,canvasRef.current,ctx)}
+                onMouseUp={(event)=>onMouseUp(event,canvasRef.current,ctx)}
                 ref={canvasRef}/>
         </div>
     )
